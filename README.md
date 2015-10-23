@@ -8,3 +8,6 @@
 - Mike Freeman
 - Dennis Kim
 - Dan Meyer
+- Brian Rappaport
+- Quinn Collins
+- Nathan Watts
