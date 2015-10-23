@@ -1,9 +1,10 @@
-# polyhack2015
+# Polyhack - 2015
 
-## Derek Benson
-## Emily Swanborg
-## Chris Hnin
-## Robert Goodfellow
-## Mike Freeman
-## Dennis Kim
-## Dan Meyer
+## Group Members
+- Derek Benson
+- Emily Swanborg
+- Chris Hnin
+- Robert Goodfellow
+- Mike Freeman
+- Dennis Kim
+- Dan Meyer
