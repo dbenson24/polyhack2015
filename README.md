@@ -8,3 +8,10 @@
 - Mike Freeman
 - Dennis Kim
 - Dan Meyer
+- Brian Rappaport
+- Quinn Collins
+- Nathan Watts
+
+## TripAdvisor API Key
+- 4F5A3954F085445486E190A252ED8DB9
+
