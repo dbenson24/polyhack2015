@@ -1,3 +1,9 @@
+/* 
+	plotRoute.js
+	Contains code for creating a map and calculating a route for a given list of latitudes and longitudes.
+	HTML must contain a div with ID "map-canvas" for the map to get slapped into
+
+*/
 var map;
 
 function plotRoute(locations){
@@ -8,9 +14,10 @@ function plotRoute(locations){
   	var directionsDisplay = new google.maps.DirectionsRenderer;
 	directionsDisplay.setMap(map);
 	
-	var waypoints = [locations.length-1];
+	var waypoints = new Array(locations.length - 1);
 
 	for(var i = 0; i < waypoints.length; i++){
+		
 		waypoints[i] = {location:locations[i+1], stopover:false};
 	}
 

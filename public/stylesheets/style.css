@@ -1,13 +1,14 @@
 #start {
   font-family: 'Sigmar One', cursive;
   width: 100%;
-  height: 10vh;
+  height: 5vh;
   min-height: 3.5em;
   margin-top: 20px;
   margin-bottom: 20px;
-  background-color: black;
-  color: #ffffff;
-  font-size: 3em; }
+  background-color: #505050;
+  color: #fff5c3;
+  font-size: 3em;
+  border-radius: 20px; }
 
 #map {
   width: 100%;

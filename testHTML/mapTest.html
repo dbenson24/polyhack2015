@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>TEST MAP</title>
+		<meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
+		<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?sensor=true&amp;libraries=places"></script>
+		<script src = "../public/javascripts/plotRoute.js"></script>
+</head>
+
+<body style="height:500px; width:100%; margin: 0px; padding: 0px;">
+	 <div style="height:100%; width:100%;">
+         <div id="map-canvas" style="height:100%; width:100%;"></div>
+    </div>
+	<script>
+		var locations = [5];
+		locations[0] = new google.maps.LatLng(41.852564, -87.651340);
+		locations[1] = new google.maps.LatLng(41.855202, -87.653121);
+		locations[2] = new google.maps.LatLng(41.856176, -87.649891);
+		locations[3] = new google.maps.LatLng(41.856168, -87.648743);
+		locations[4] = new google.maps.LatLng(41.853883, -87.648014);
+		plotRoute(locations);
+	</script>
+
+	</script>
+    
+</body>
+</html>

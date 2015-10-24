@@ -1,18 +1,22 @@
 $eventColor: #B3E5FC;
 
-$turqoise: #129793;
-
+$turquoise: #129793;
+$grey: #505050;
+$yellow: #fff5c3;
+$bluegreen: #9bd7d5;
+$red: #ff7260;
 
 #start {
     font-family: 'Sigmar One', cursive;
     width: 100%;
-    height: 10vh;
+    height: 5vh;
     min-height: 3.5em;
     margin-top: 20px;
     margin-bottom: 20px;
-    background-color: lighten(#000000, 0);
-    color: #ffffff;
+    background-color: $grey;
+    color: $yellow;
     font-size: 3em;
+    border-radius: 20px;
 }
 
 #map {
