@@ -14,6 +14,8 @@ var images = [];
 
 var waypointMarkers = [];
 
+var infoWindows = [];
+
 function getImages(){
 	for(var i = 0; i < 100; i++){
 		if(i<10)
@@ -49,34 +51,21 @@ function plotRoute(locations) {
 			location: locations[i + 1],
 			stopover: true
 		};
-		
+			infoWindows.push("waypoint "+i);
 		waypointMarkers.push(
-			var infowindow = new google.maps.InfoWindow({
-    content: contentString
-  });
-
-  var marker = new google.maps.Marker({
-    position: uluru,
-    map: map,
-    title: 'Uluru (Ayers Rock)'
-  });
-  marker.addListener('click', function() {
-    infowindow.open(map, marker);
-  });
-			
 			new google.maps.Marker({
 				position:locations[i],
 				map:map}));
-		
-	/*	var marker = new google.maps.Marker( {
-			title: "text"	
-			lat: waypoints[i].latitude,
-			lng: waypoints[i].longitude
-		});
-		google.maps.event.addListener(waypoints[i], 'click', function() {
-			infowindow.setContent("this.title");
-			infowindow.open(map, this);
-		});*/
+			
+			var makeWindows = [waypoints.length];
+			makeWindows[i] = function(){
+				console.log(infoWindows[i]);
+			    new google.maps.InfoWindow({position: locations[i], content: infoWindows[i], map:map}).open(map, waypointMarkers[i]);
+			};
+			
+			console.log(makeWindows);
+				
+		 	google.maps.event.addListener(waypointMarkers[i], 'click', makeWindows[i]);
 	}
 	
 
@@ -96,7 +85,7 @@ function calcRoute(start, stops, map, directionsService, directionsDisplay) {
 	directionsService.route(request, function(result, status) {
 		if (status == google.maps.DirectionsStatus.OK) {
 			skeletonRoute = result;
-			//directionsDisplay.setOptions({suppressMarkers: true});
+			directionsDisplay.setOptions({suppressMarkers: true});
 			directionsDisplay.setDirections(result);
 			skeletonMarker = new google.maps.Marker({
 				position: start,

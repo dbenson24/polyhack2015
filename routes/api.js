@@ -83,4 +83,19 @@ router.get('/locations', function(req, res, next) {
     });
 });
 
+router.get('/saved/:id', function(req, res, next) {
+    var collection = db.get('stories');
+    collection.find({"_id":req.params.id
+    }, function(err, docs) {
+        res.send(
+            (err === null) ? {
+                docs
+            } : {
+                msg: err
+            }
+        );
+    });
+});
+
+
 module.exports = router;

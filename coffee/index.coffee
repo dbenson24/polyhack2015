@@ -53,5 +53,5 @@ $.getJSON("/api/locations/" + myLat + "/" + myLng, (result) ->
     fillEvents(data[0...9])
 )
 
-        
+
 writeText("Skeleton Activity", ".header h1", 250)

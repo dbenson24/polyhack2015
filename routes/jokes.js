@@ -24,7 +24,8 @@ function joke_generator(attraction_type) {
 "swatted an errant fly with its femur",
 "destroyed an ant colony with its foul breath",
 "delighted in the scent of nature before realizing it had no nose",
-"dug a hole in the ground large enough to bury himself prematurely"
+"dug a hole in the ground large enough to bury himself prematurely",
+"a wild dog buried his femur",
         ];
 
 function joke_generator_geographic(attraction_type) {
@@ -34,7 +35,7 @@ function joke_generator_geographic(attraction_type) {
 
 
 	var jokes_hotel = [
-"was immediately worshipped upon walking in on a goth convention",
+"was immediately worshiped upon walking in on a goth convention",
 "gave an innocent maid a heart attack by jumping out of a closet",
 "posed motionless in the lobby before getting up and walking away",
 "objected to a random couple's wedding",
@@ -43,7 +44,9 @@ function joke_generator_geographic(attraction_type) {
 "pressed all the buttons in the elevator and immediately left the building",
 "climbed on top of a chandalier and crashed it into the floor",
 "scared the sheet out of a ghost who was trying to haunt its room",
-"tried to book a room, but the receptionist turned it away until to-marrow"];
+"tried to book a room, but the receptionist turned it away until to-marrow",
+//"saw an entire development team lose thier sanity",
+//"went hunting for snipes in the lobby"];
 
 function joke_generator_hotel(attraction_type) {
 	var choice = Math.floor(Math.random()*jokes_hotel.length);
@@ -60,7 +63,15 @@ function joke_generator_hotel(attraction_type) {
 "asked the waiter for some wine and a spirit",
 "wanted to order some spicy food, but didn't have the stomach for it",
 "devoured its meal all the way down to the bone",
-"found the food quite hard to swallow"];
+"found the food quite hard to swallow",
+"choked on a chicken bone.",
+"had a bone to pick with the maitre d\'",
+"got the short end of the wishbone",
+//"saw Chris nearly blind herself with chopsticks"
+"ordered three portions of ravioli with no filling covered in chocolate syrup and the tears of orphans sprinkled on top",
+"ordered Lobster Thermidor aux crevettes with a Mornay sauce, garnished with truffle pate, brandy and a fried egg on top and Spam",
+"orderd some farm-fresh, gluten-free Spam"
+];
 
 function joke_generator_restaurant(attraction_type) {
 	var choice = Math.floor(Math.random()* jokes_restaurant.length);
@@ -71,13 +82,18 @@ function joke_generator_restaurant(attraction_type) {
 	var jokes_attraction = ["literally stole candy from a crying baby",
 "was the first person to be exempt from x-rays before entering the premises",
 "was arrested for loitering, even though it was just skull-king around",
+"did the harlem shake",
 "snuck into the event to freak out innocent bystanders",
 "tried to blend into the crowd by stealing a streaker's clothes",
 "sobbed in a corner after being told it was \"heartless\"",
 "wanted to break in, but just didn't have the spine to do so",
 "got everyone sick due to its constant coughing",
 "came across a skeletal snake, but ran away because it was a rattler",
-"played nonconsensual fetch with an overly-curious pitbull"];
+"played nonconsensual fetch with an overly-curious pitbull",
+//"watch Brian insult Dan repeatedly until he cried",
+"realized that his hip bone is connected to his backbone",
+"lost his head",
+//"did the skeleton dance"];
 function joke_generator_attraction(attraction_type) {
 	var choice = Math.floor(Math.random()*jokes_attraction.length);
         return jokes_attraction[choice];
