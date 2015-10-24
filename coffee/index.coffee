@@ -20,8 +20,8 @@ if(navigator.geolocation) {
 } else {
 ###
 
-myLat = 42.403604;
-myLng = -71.113997;
+myLat = 48.8582;
+myLng = 2.2945;
 
 ##}
 

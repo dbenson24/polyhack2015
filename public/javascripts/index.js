@@ -24,9 +24,9 @@ if(navigator.geolocation) {
 (function() {
   var fillEvents, myLat, myLng;
 
-  myLat = 42.403604;
+  myLat = 48.8582;
 
-  myLng = -71.113997;
+  myLng = 2.2945;
 
   window.writeText = function(text, selector, rate) {
     var i, write, x, _results;
