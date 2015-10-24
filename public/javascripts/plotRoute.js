@@ -54,7 +54,7 @@ function calcRoute(start, stops, map, directionsService, directionsDisplay) {
     		skeletonRoute = result;
       		directionsDisplay.setDirections(result);
       		skeletonMarker = new google.maps.Marker({position:start, map:map, icon:image});
-      		animateSkelly(skeletonMarker, skeletonRoute, 0, 0, 0, 0)
+      		animateSkelly(skeletonMarker, skeletonRoute, 0, 0, 0, 0, 0)
     	}
 	});
 }
@@ -78,30 +78,34 @@ function plopMarkers(){
 
 }
 
-function animateSkelly(yourmarker,yourroute,route,leg,step,latlng) {
-		latlng++;
-		if (latlng >= yourroute.routes[route].legs[leg].steps[step].path.length){
-			latlng = 0;
-			step++;
-		}
-		if (step >= yourroute.routes[route].legs[leg].steps.length){
-			step = 0;
-			leg++;
-		}
-		if (leg >= yourroute.routes[route].legs.length){
-			leg = 0;
-			route++;
-		}
-		if (route >= yourroute.routes.length){
-			route = 0;
-		}
-		
-		//skeletonMarker.position = yourroute.routes[route].legs[leg].steps[step].path[latlng];
-		
-        skeletonMarker.setMap(null);
-       	skeletonMarker = null;
-        skeletonMarker = new google.maps.Marker({position:yourroute.routes[route].legs[leg].steps[step].path[latlng], map:map, icon:image});
-        window.setTimeout(function(){
-            animateSkelly(yourmarker,yourroute,route,leg,step,latlng);
-        },500);
+function animateSkelly(yourmarker,yourroute,route,leg,step,latlng, step) {
+	var prevLoc = yourroute.routes[route].legs[leg].steps[step].path[latlng];
+	latlng++;
+	if (latlng >= yourroute.routes[route].legs[leg].steps[step].path.length){
+		latlng = 0;
+		step++;
+	}
+	if (step >= yourroute.routes[route].legs[leg].steps.length){
+		step = 0;
+		leg++;
+	}
+	if (leg >= yourroute.routes[route].legs.length){
+		leg = 0;
+		route++;
+	}
+	if (route >= yourroute.routes.length){
+		route = 0;
+	}
+	var nextLoc = yourroute.routes[route].legs[leg].steps[step].path[latlng];
+	
+	skeletonMarker.setPosition(lerp(prevLoc, nextLoc, step));
+    window.setTimeout(function(){
+        animateSkelly(yourmarker,yourroute,route,leg,step,latlng, (step+0.1)%1);
+    },500);
+}
+
+function lerp(latlngA, latlngB, n){
+	var lat = (n*latlngB.lat+(1-n)*latlngA.lat)/2;
+	var lng = (n*latlngB.lng+(1-n)*latlngA.lng)/2;
+	return {lat, lng};
 }

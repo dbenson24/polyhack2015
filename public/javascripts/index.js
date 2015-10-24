@@ -12,7 +12,7 @@ map = new google.maps.Map(document.getElementById("map"), myOptions)
 (function() {
   var writeText;
 
-  $.getJSON("/api/locations/" + 41.852564 + "/" + -87.651340, function(data) {
+  $.getJSON("/api/locations/" + 42.403604 + "/" + -71.113997, function(data) {
     return plotRoute(data);
   });
 
