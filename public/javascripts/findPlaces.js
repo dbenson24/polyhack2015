@@ -24,7 +24,7 @@ function findPlaces(lat, lon) {
             var reviewsAPI = website + 'location/' + location + '/reviews?key=' + API;
             $.getJSON(reviewsAPI, function(revText) {
                 locations[i].title = revText.data[rand].title;
-                locations[i].text = revText.data[1].text;
+                locations[i].text = revText.data[rand].text;
                 locations[i].rating = revText.data[rand].rating;
             });
             /*

@@ -43,7 +43,6 @@ if(navigator.geolocation) {
       setTimeout(write, x * rate);
       _results.push(x++);
     }
-    move = true;
     return _results;
   };
 

@@ -38,7 +38,6 @@ window.writeText = (text, selector, rate) ->
     while x < text.length
         setTimeout(write, x*rate)
         x++
-    move = true
 
 fillEvents = (locations) ->
     console.log("locations", locations)

@@ -17,9 +17,9 @@ body {
 }
 
 
-#mapcontainer .container {
+#mapcontainer {
+        background-color: $teal;
         background-image: url("../public/images/Dream_background.gif");
-    
 }
 
 #start {
@@ -70,7 +70,7 @@ body {
 }
 
 #map {
-    height: 90vmin;
+    height: 2000vmin;
     width: 90vmin;
     margin: auto;
     margin-bottom: 20px;
