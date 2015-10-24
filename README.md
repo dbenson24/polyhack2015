@@ -13,6 +13,11 @@
 - Nathan Watts
 - Anne Oursler
 
-## TripAdvisor API Key
-- 4F5A3954F085445486E190A252ED8DB9
+# Skeleton Life
 
+This app allows you to create a skeleton to explore random areas of the world.
+Given a Latitude and Longitude, your skeleton will seek a unique adventure of his own
+thanks to the power of Google Maps and Trip Advisor's API.
+
+If you decide that your skeleton had a particularly exciting journey, feel free
+to share the link with all of your friends.

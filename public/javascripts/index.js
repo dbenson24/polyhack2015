@@ -19,23 +19,9 @@
       data = result.result.locations;
       plotRoute(data);
       fillEvents(data.slice(0, 9));
-      return $("#link").html("https://polyhack2015-dbenson24.c9.io/#" + result.result._id);
+      return $("#link").html("http://" + window.location.hostname + "/#" + result.result._id);
     });
   };
-
-
-  /*
-  Oh, if you could get the reviews working, that would be awesome
-  
-  Also, thanks. We've been getting pretty frusturated.
-  
-  What about the reviews tho
-  I don't really get where they are displayed
-  or what they do
-  
-  
-  Can you guys write out a nice Readme?
-   */
 
   window.writeText = function(text, selector, rate) {
     var i, write, x, _results;

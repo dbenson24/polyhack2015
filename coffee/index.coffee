@@ -15,23 +15,8 @@ window.changeLocation = () ->
         data = result.result.locations
         plotRoute(data)
         fillEvents(data[0...9])
-        $("#link").html("https://polyhack2015-dbenson24.c9.io/##{result.result._id}")
+        $("#link").html("http://#{window.location.hostname}/##{result.result._id}")
     )
-
-###
-Oh, if you could get the reviews working, that would be awesome
-
-Also, thanks. We've been getting pretty frusturated.
-
-What about the reviews tho
-I don't really get where they are displayed
-or what they do
-
-
-Can you guys write out a nice Readme?
-
-
-###
 
 
 window.writeText = (text, selector, rate) ->
