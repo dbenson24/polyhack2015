@@ -40,9 +40,24 @@ if(navigator.geolocation) {
       var data;
       data = result.result.locations;
       plotRoute(data);
-      return fillEvents(data.slice(0, 9));
+      fillEvents(data.slice(0, 9));
+      return $("#link").html("https://polyhack2015-dbenson24.c9.io/#" + result.result._id);
     });
   };
+
+
+  /*
+  Assertion failed: InvalidValueError: in property origin: not a string; and not a LatLng or LatLngLiteral: not an Object; and not an Object
+  in main.js:16
+  and
+  
+  Uncaught TypeError: Cannot read property 'N' of null
+  VM3308:7
+  
+  
+  I know I see that
+  but what about the page isn't working
+   */
 
   window.writeText = function(text, selector, rate) {
     var i, write, x, _results;

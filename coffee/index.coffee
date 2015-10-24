@@ -43,7 +43,29 @@ window.changeLocation = () ->
         data = result.result.locations
         plotRoute(data)
         fillEvents(data[0...9])
+        $("#link").html("https://polyhack2015-dbenson24.c9.io/##{result.result._id}")
     )
+
+##just wanted to mention that we're having a lot of trouble understanding your code
+## basically, we've only been able to work with plotRoute and sentenceGen. And style.css, a bit. Everything else either doesn't save, isn't used at all, or we just don't understand
+## So twice now we've spent hours working on code that isn't actually used anymore.
+## If there's obsolete code files, could you delete those? At some point, anyway.
+## Making it actually work is higher-priority
+## Okay so what doesn't work
+## refresh the page and tell me
+
+###
+Assertion failed: InvalidValueError: in property origin: not a string; and not a LatLng or LatLngLiteral: not an Object; and not an Object
+in main.js:16
+and
+
+Uncaught TypeError: Cannot read property 'N' of null
+VM3308:7
+
+
+I know I see that
+but what about the page isn't working
+###
 
 
 window.writeText = (text, selector, rate) ->
