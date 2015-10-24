@@ -1,11 +1,18 @@
 body {
   font-family: "Special Elite", cursive;
-  background: #3d3c3c;
-  color: white; }
+  background: #b2b2b2;
+  /*3d3c3c;*/
+  color: #000000; }
+
+#map {
+  height: 90vmin;
+  width: 90vmin;
+  margin: auto;
+  margin-bottom: 20px; }
 
 #mapcontainer {
-  background-color: #129793;
-  background-image: url("../public/images/Dream_background.gif"); }
+  /* background-color: $teal;*/
+  background-image: url("../public/images/Dream_background.png"); }
 
 #start {
   font-family: "Special Elite", cursive;
@@ -45,15 +52,10 @@ body {
 .grey {
   color: #505050; }
 
-#map {
-  height: 2000vmin;
-  width: 90vmin;
-  margin: auto;
-  margin-bottom: 20px; }
-
 .header {
   text-align: center;
-  background: #3d3c3c; }
+  background: #b2b2b2;
+  /*3d3c3c;*/ }
 
 #events {
   margin-top: 20px;
@@ -78,10 +80,17 @@ body {
 */
 .navbar {
   margin-bottom: 0px;
-  background-color: #FFFFFF;
+  background-color: #000000;
   color: black; }
 
 #navbar {
   color: #000000; }
+
+#lat, #lng {
+  margin-left: 15px;
+  margin-right: 15px; }
+
+form {
+  margin: auto; }
 
 /*# sourceMappingURL=style.css.map */

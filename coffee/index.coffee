@@ -20,12 +20,30 @@ if(navigator.geolocation) {
 } else {
 
 ###
-myLat = 48.8582;
-myLng = 2.2945;
 
-
-
+#myLat = 48.8582;
+#myLng = 2.2945;
+#myLat = 40.7
+#myLng = 23.324
+myLat = 42.4039256 #Tufts
+myLng = -71.1168384 #Tufts
 ##}
+
+window.changeLocation = () ->
+    myLat = $("#lat").val()
+    myLng = $("#lng").val()
+    
+    $("#events").html("")
+    
+    if window.animation?
+        clearInterval window.animation
+        window.animation = null
+    
+    $.getJSON("/api/locations/" + myLat + "/" + myLng, (result) ->
+        data = result.result.locations
+        plotRoute(data)
+        fillEvents(data[0...9])
+    )
 
 
 window.writeText = (text, selector, rate) ->
@@ -49,13 +67,8 @@ fillEvents = (locations) ->
         events.html(events.html()+content)
         writeText(loc.sentence, "#msg_#{id}", 100)
 
-if (window.location.hash is "#" or window.location.hash is "") 
-    $.getJSON("/api/locations/" + myLat + "/" + myLng, (result) ->
-        data = result.result.locations
-        plotRoute(data)
-        fillEvents(data[0...9])
-    )
-        
+if (window.location.hash is "#" or window.location.hash is "")
+    
 else 
     r = $.getJSON("/api/saved/" + window.location.hash.substring(1), (result) ->
         if result.err?

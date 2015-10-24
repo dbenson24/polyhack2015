@@ -14,7 +14,6 @@ function findPlaces(lat, lon) {
     
     var placesAPI = website + 'map/' + lat + ',' + lon + '?key=' + API;
     $.getJSON(placesAPI, function(text) {
-        var rand = Math.round(Math.random()*text.data.length);
         for (var i = 0; i < text.data.length; i++) {
             locations[i] = text.data[i];
             locations[i].lat = text.data[i].latitude;
@@ -22,11 +21,17 @@ function findPlaces(lat, lon) {
             locations[i].locId = text.data[i].location_id;
             locations[i].type = text.data[i].category;
             var reviewsAPI = website + 'location/' + location + '/reviews?key=' + API;
-            $.getJSON(reviewsAPI, function(revText) {
-                locations[i].title = revText.data[rand].title;
-                locations[i].text = revText.data[rand].text;
-                locations[i].rating = revText.data[rand].rating;
-            });
+        }
+    });
+            
+     $.getJSON(reviewsAPI, function(revText) {
+         var rand = Math.round(Math.random()*text.data.length);
+        for (var i = 0; i < text.data.length; i++) {
+            locations[i].title = revText.data[rand].title;
+            locations[i].text = revText.data[rand].text;
+            locations[i].rating = revText.data[rand].rating;
+        }
+     });
             /*
             indico.sentimentHQ("Make this the text from rating.")
               .then(function(res) { // res = the result of the sentiment function as a decimal

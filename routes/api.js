@@ -15,7 +15,7 @@ router.get('/locations/:lat/:lon', function(req, res, next) {
     var website = 'https://api.tripadvisor.com/api/partner/2.0/';
     var lat = req.params.lat;
     var lon = req.params.lon;
-
+    var locations = [];
     //find places near location
     var placesAPI = website + 'map/' + lat + ',' + lon + '?key=' + API;
     //Check for error
@@ -28,7 +28,6 @@ router.get('/locations/:lat/:lon', function(req, res, next) {
         }
         else {
             var text = JSON.parse(body);
-            var locations = [];
             // elem.innerHTML += "<p>While you were asleep, your skeleton decided to take an adventure around $location.</p>"
             for (var i = 0; i < text.data.length; i++) {
                 var rand = Math.round(Math.random() * 20);
@@ -62,8 +61,8 @@ router.get('/locations/:lat/:lon', function(req, res, next) {
 router.get('/locations', function(req, res, next) {
     var API = '4F5A3954F085445486E190A252ED8DB9';
     var website = 'https://api.tripadvisor.com/api/partner/2.0/';
-    var lat = 42.403604;
-    var lon = -71.113997;
+    var lat = myLat;
+    var lon = myLng;
 
     //find places near location
     var placesAPI = website + 'map/' + lat + ',' + lon + '?key=' + API;
@@ -87,8 +86,8 @@ router.get('/locations', function(req, res, next) {
 router.get('/reviews', function(req, res, next) {
     var API = '4F5A3954F085445486E190A252ED8DB9';
     var website = 'https://api.tripadvisor.com/api/partner/2.0/';
-    var lat = 42.403604;
-    var lon = -71.113997;
+    var lat = myLat;
+    var lon = myLng;
 
     //find places near location
     var placesAPI = website + 'location/' + 89575 + '/reviews?key=' + API;

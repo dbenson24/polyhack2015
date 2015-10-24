@@ -42,7 +42,12 @@ function createStory(location, i) {
         randint = Math.floor(Math.random() * adverbs.length);
         adverb = adverbs[randint];
         joke = joke_generator(type);
-        var string = prefixes[i%prefixes.length] + " " + verb + " " + adverb + " to " + attraction + ", and " + joke + ".";
+        if(Math.floor(Math.random()*10)>4){
+                var string = prefixes[i%prefixes.length] + " " + verb + " " + adverb + " to " + attraction + ", and " + joke + ".";
+        } 
+        else {
+                var string = prefixes[i%prefixes.length] + " " + verb + " to " + attraction + ", and " + joke + ".";
+        }
         //}
         //randint = Math.random()*sent_ends.length;
         //elem.innerHTML += sent_ends[randint];

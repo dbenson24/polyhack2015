@@ -17,11 +17,11 @@ var waypointMarkers = [];
 var move = true;
 
 function getImages(){
-	for(var i = 0; i < 100; i++){
+	for(var i = 0; i < 100; i++){ //images/skeleton_anim_angry/skeleton head_front [angry]_000
 		if(i<10)
-			images.push('images/skeleton_anim_angry/skeleton head_front [angry]_0000'+i+'.png');
+			images.push('images/skeleton animations part2/skeleton_anim_walkcycle/skeleton_walkcycle_0000'+i+'.png');
 		else
-			images.push('images/skeleton_anim_angry/skeleton head_front [angry]_000'+i+'.png');
+			images.push('images/skeleton animations part2/skeleton_anim_walkcycle/skeleton_walkcycle_000'+i+'.png');
 	}
 }
 
@@ -53,10 +53,15 @@ function plotRoute(locations) {
 			stopover: true
 		};
 		
+		if(locations[i].rating != null)
+			var txt = locations[i].name + ": " + locations[i].rating + " stars";
+		else
+			var txt = locations[i].name;
+		
 		console.log(locations[i].text);
 			
 		waypointMarkers.push(
-			makeMarker(map, locations[i].lat, locations[i].lng, locations[i].title + ": " + locations[i].text));
+			makeMarker(map, locations[i].lat, locations[i].lng, txt, locations[i].type));
 	}
 	
 
@@ -144,7 +149,7 @@ function calcRoute(start, stops, map, directionsService, directionsDisplay, loca
 					skeletonMarker.setPosition(google.maps.geometry.spherical.interpolate(prevLoc, nextLoc, iter));
 				skeletonMarker.setIcon(images[frame]);
 			}
-			window.setInterval(animateSkelly, 50);
+			window.animation = window.setInterval(animateSkelly, 50);
 		}
 	});
 }
@@ -189,12 +194,18 @@ function lerp(latlngA, latlngB, n) {
 }
 
 
-function makeMarker(map, lat, lng, title) {
+function makeMarker(map, lat, lng, title, type) {
     var infowindow, marker;
     marker = new google.maps.Marker({
       position: new google.maps.LatLng(lat, lng),
       title: title
     });
+    
+      if(type == "restaurant")
+      	marker.icon = "../public/images/restaurant.png";
+      else if(type == "hotel")
+      	marker.icon = "../public/images/hotel.png";
+    
     marker.setMap(map);
     infowindow = new google.maps.InfoWindow();
     google.maps.event.addListener(marker, 'click', function() {

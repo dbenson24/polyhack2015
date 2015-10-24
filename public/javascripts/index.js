@@ -24,9 +24,25 @@ if(navigator.geolocation) {
 (function() {
   var fillEvents, myLat, myLng, r;
 
-  myLat = 48.8582;
+  myLat = 42.4039256;
 
-  myLng = 2.2945;
+  myLng = -71.1168384;
+
+  window.changeLocation = function() {
+    myLat = $("#lat").val();
+    myLng = $("#lng").val();
+    $("#events").html("");
+    if (window.animation != null) {
+      clearInterval(window.animation);
+      window.animation = null;
+    }
+    return $.getJSON("/api/locations/" + myLat + "/" + myLng, function(result) {
+      var data;
+      data = result.result.locations;
+      plotRoute(data);
+      return fillEvents(data.slice(0, 9));
+    });
+  };
 
   window.writeText = function(text, selector, rate) {
     var i, write, x, _results;
@@ -61,12 +77,7 @@ if(navigator.geolocation) {
   };
 
   if (window.location.hash === "#" || window.location.hash === "") {
-    $.getJSON("/api/locations/" + myLat + "/" + myLng, function(result) {
-      var data;
-      data = result.result.locations;
-      plotRoute(data);
-      return fillEvents(data.slice(0, 9));
-    });
+
   } else {
     r = $.getJSON("/api/saved/" + window.location.hash.substring(1), function(result) {
       var data;
