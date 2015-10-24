@@ -1,8 +1,40 @@
-body {
-  padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
-}
+#start {
+  font-family: 'Sigmar One', cursive;
+  width: 100%;
+  height: 10vh;
+  min-height: 3.5em;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  background-color: black;
+  color: #ffffff;
+  font-size: 3em; }
 
-a {
-  color: #00B7FF;
-}
+#map {
+  width: 100%;
+  height: 70vh;
+  margin: auto;
+  margin-bottom: 20px; }
+
+.header {
+  text-align: center; }
+
+#events {
+  margin-top: 20px;
+  list-style-type: none;
+  padding-left: 5vw;
+  padding-right: 5vw; }
+
+.event {
+  font-size: 1.5em;
+  text-align: center;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  background-color: #B3E5FC; }
+
+.event:last-child {
+  border-bottom-style: none; }
+
+.event:nth-child(even) {
+  background-color: #51c3f8; }
+
+/*# sourceMappingURL=style.css.map */

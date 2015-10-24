@@ -1,5 +1,23 @@
 extends layout
 
 block content
-  h1= title
-  p Welcome to #{title}
+  .container
+    button#start.btn.btn-default(type="button").
+      Fall Asleep!
+  .container
+    #map
+  .container
+    .jumbotron.header
+      h1 What happened?
+    ul#events
+      li.event.
+        Skeleton woke up
+      li.event.
+        Skeleton ate shit at Nick's Pizza
+      li.event.
+        Skeleton had mind blowing sex with his friend
+      li.event.
+        Skeleton went back to bed
+block scripts
+  script(src="https://maps.google.com/maps/api/js?sensor=true")
+  script(src="javascripts/index.js")
