@@ -10,7 +10,7 @@ var skeletonMarker;
 
 var skeletonRoute = null;
 
-var image = 'images/skeleton_anim_angry.gif';
+var image = 'images/skeleton_anim_angry/skeleton head_front [angry]_00000.png';
 
 function plotRoute(locations) {
 	for (var n = 0; n < locations.length; n++) {
@@ -38,6 +38,7 @@ function plotRoute(locations) {
 			stopover: true
 		};
 	}
+	
 
 	calcRoute(locations[0], waypoints, map, directionsService, directionsDisplay);
 }
@@ -66,31 +67,43 @@ function calcRoute(start, stops, map, directionsService, directionsDisplay) {
 			var leg = 0;
 			var step = 0;
 			var latlng = 0;
-
+			var prevLoc;
+			var nextLoc;
+			var iter = 1;
+			var frame = 0;
 			function animateSkelly() {
-
-				//var prevLoc = skeletonRoute.routes[route].legs[leg].steps[step].path[latlng];
-				latlng++;
-				if (latlng >= skeletonRoute.routes[route].legs[leg].steps[step].path.length) {
-					latlng = 0;
-					step++;
+				frame++;
+				frame %= 100;
+				if(iter >= 1){
+					console.log("step");
+					iter = 0;
+					prevLoc = skeletonRoute.routes[route].legs[leg].steps[step].path[latlng];
+					latlng++;
+					if (latlng >= skeletonRoute.routes[route].legs[leg].steps[step].path.length) {
+						latlng = 0;
+						step++;
+					}
+					if (step >= skeletonRoute.routes[route].legs[leg].steps.length) {
+						step = 0;
+						leg++;
+					}
+					if (leg >= skeletonRoute.routes[route].legs.length) {
+						leg = 0;
+						route++;
+					}
+					if (route >= skeletonRoute.routes.length) {
+						route = 0;
+					}
+					nextLoc = skeletonRoute.routes[route].legs[leg].steps[step].path[latlng];
 				}
-				if (step >= skeletonRoute.routes[route].legs[leg].steps.length) {
-					step = 0;
-					leg++;
-				}
-				if (leg >= skeletonRoute.routes[route].legs.length) {
-					leg = 0;
-					route++;
-				}
-				if (route >= skeletonRoute.routes.length) {
-					route = 0;
-				}
-				//var nextLoc = ;
-
-				skeletonMarker.setPosition(skeletonRoute.routes[route].legs[leg].steps[step].path[latlng]);
+				iter += 1/google.maps.geometry.spherical.computeDistanceBetween(prevLoc, nextLoc);
+				skeletonMarker.setPosition(google.maps.geometry.spherical.interpolate(prevLoc, nextLoc, iter));
+				if(frame <10)
+					skeletonMarker.setIcon('images/skeleton_anim_angry/skeleton head_front [angry]_0000'+frame+'.png');
+				else
+					skeletonMarker.setIcon('images/skeleton_anim_angry/skeleton head_front [angry]_000'+frame+'.png');
 			}
-			window.setInterval(animateSkelly, 500);
+			window.setInterval(animateSkelly, 50);
 		}
 	});
 }
@@ -120,9 +133,10 @@ function plopMarkers() {
 
 
 function lerp(latlngA, latlngB, n) {
-	var lat = (n * latlngB.lat + (1 - n) * latlngA.lat) / 2;
-	var lng = (n * latlngB.lng + (1 - n) * latlngA.lng) / 2;
-	return {
-		lat, lng
-	};
+	var latitude = (n * latlngB.lat() + (1 - n) * latlngA.lat()) / 2;
+	var longitude = (n * latlngB.lng() + (1 - n) * latlngA.lng()) / 2;
+	
+	var point = new google.maps.LatLng(latitude, longitude);
+	console.log(point.lng());
+	return point;
 }

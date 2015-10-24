@@ -25,19 +25,33 @@ myLng = -71.113997;
 
 ##}
 
-$.getJSON("/api/locations/" + myLat + "/" myLng, (data) ->
-    plotRoute(data)
-)
 
 window.writeText = (text, selector, rate) ->
     i = 0
     write = () ->
-        header = $("selector")
+        header = $(selector)
         header.html(header.html()+text[i])
         i++
     x = 0
     while x < text.length
         setTimeout(write, x*rate)
         x++
+
+fillEvents = (locations) ->
+    console.log("locations", locations)
+    events = $("#events")
+    for loc, id in locations
+        content = """<li id="msg_#{id}" class="event">
+                     </li>
+                  """
+        sentence = "Skeleton waltzed right into #{loc.name} and left his bones on the floor."
+        events.html(events.html()+content)
+        writeText(sentence, "#msg_#{id}", 150)
+
+$.getJSON("/api/locations/" + myLat + "/" + myLng, (data) ->
+    plotRoute(data)
+    fillEvents(data[0...9])
+)
+
         
 writeText("Skeleton Activity", ".header h1", 250)

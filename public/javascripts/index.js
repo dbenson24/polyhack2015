@@ -9,31 +9,63 @@ myOptions =
 map = new google.maps.Map(document.getElementById("map"), myOptions)
  */
 
+
+/*
+var myLat;
+var myLng;
+if(navigator.geolocation) {
+    navigator.geolocation.getCurrentPosition(function(position) {
+						myLat = position.coords.latitude;
+						myLng = position.coords.longitude;
+    }
+} else {
+ */
+
 (function() {
-  var writeText;
+  var fillEvents, myLat, myLng;
 
-  $.getJSON("/api/locations/" + 42.403604 + "/" + -71.113997, function(data) {
-    return plotRoute(data);
-  });
+  myLat = 42.403604;
 
-  writeText = function(text) {
+  myLng = -71.113997;
+
+  window.writeText = function(text, selector, rate) {
     var i, write, x, _results;
     i = 0;
     write = function() {
       var header;
-      header = $(".header h1");
+      header = $(selector);
       header.html(header.html() + text[i]);
       return i++;
     };
     x = 0;
     _results = [];
     while (x < text.length) {
-      setTimeout(write, x * 250);
+      setTimeout(write, x * rate);
       _results.push(x++);
     }
     return _results;
   };
 
-  writeText("Skeleton Activity");
+  fillEvents = function(locations) {
+    var content, events, id, loc, sentence, _i, _len, _results;
+    console.log("locations", locations);
+    events = $("#events");
+    _results = [];
+    for (id = _i = 0, _len = locations.length; _i < _len; id = ++_i) {
+      loc = locations[id];
+      content = "<li id=\"msg_" + id + "\" class=\"event\">\n</li>";
+      sentence = "Skeleton waltzed right into " + loc.name + " and left his bones on the floor.";
+      events.html(events.html() + content);
+      _results.push(writeText(sentence, "#msg_" + id, 150));
+    }
+    return _results;
+  };
+
+  $.getJSON("/api/locations/" + myLat + "/" + myLng, function(data) {
+    plotRoute(data);
+    return fillEvents(data.slice(0, 9));
+  });
+
+  writeText("Skeleton Activity", ".header h1", 250);
 
 }).call(this);
