@@ -1,33 +1,74 @@
 $eventColor: #B3E5FC;
 
-$turquoise: #129793;
+$teal: #129793;
 $grey: #505050;
 $yellow: #fff5c3;
 $bluegreen: #9bd7d5;
 $red: #ff7260;
+$font: 'Special Elite', cursive;
+
+
+body {
+    font-family: $font;
+}
 
 #start {
-    font-family: 'Sigmar One', cursive;
-    width: 100%;
-    height: 5vh;
-    min-height: 3.5em;
+    font-family: $font;
+    width: 50%;
+    font-size: 4em;
     margin-top: 20px;
     margin-bottom: 20px;
     background-color: $grey;
-    color: $yellow;
-    font-size: 3em;
-    border-radius: 20px;
+    color: $red;
+    border-radius: 50%;
+    border-style: none;
+    box-shadow: 10px 10px 5px lighten($grey, 20);
+}
+
+#title {
+    font-family: $font;
+    font-size: 5em;
+    height: 100%;
+}
+
+.bigger {
+    font-size: 1.5em;
+}
+
+.smaller {
+    font-size: 0.5em;
+}
+
+.teal {
+    color: $teal;
+}
+
+.yellow {
+    color: darken($yellow, 10);
+}
+
+.bluegreen {
+    color: $bluegreen;
+}
+
+.red {
+    color: $red;
+}
+
+.grey {
+    color: $grey;
 }
 
 #map {
-    width: 100%;
-    height: 70vh;
+    height: 90vmin;
+    width: 90vmin;
     margin: auto;
     margin-bottom: 20px;
 }
 
 .header {
     text-align: center;
+    background: white;
 }
 
 #events {
@@ -37,18 +78,30 @@ $red: #ff7260;
     padding-right: 5vw;
 }
 
+
 .event {
     font-size: 1.5em;
     text-align: center;
     padding-top: 20px;
     padding-bottom: 20px;
-    background-color: $eventColor;
+//    background-color: $eventColor;
 }
-
+/*
 .event:last-child {
     border-bottom-style: none;
 }
 
 .event:nth-child(even) {
     background-color: darken($eventColor, 20);
+}
+*/
+
+.navbar {
+    margin-bottom: 0px;
+    background-color: $yellow;
+    color: $bluegreen;
+}
+
+#navbar {
+    color: $bluegreen;
 }

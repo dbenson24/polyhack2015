@@ -1,23 +1,53 @@
+body {
+  font-family: "Special Elite", cursive; }
+
 #start {
-  font-family: 'Sigmar One', cursive;
-  width: 100%;
-  height: 5vh;
-  min-height: 3.5em;
+  font-family: "Special Elite", cursive;
+  width: 50%;
+  font-size: 4em;
   margin-top: 20px;
   margin-bottom: 20px;
   background-color: #505050;
-  color: #fff5c3;
-  font-size: 3em;
-  border-radius: 20px; }
+  color: #ff7260;
+  border-radius: 50%;
+  border-style: none;
+  box-shadow: 10px 10px 5px #838383; }
+
+#title {
+  font-family: "Special Elite", cursive;
+  font-size: 5em;
+  height: 100%; }
+
+.bigger {
+  font-size: 1.5em; }
+
+.smaller {
+  font-size: 0.5em; }
+
+.teal {
+  color: #129793; }
+
+.yellow {
+  color: #ffed90; }
+
+.bluegreen {
+  color: #9bd7d5; }
+
+.red {
+  color: #ff7260; }
+
+.grey {
+  color: #505050; }
 
 #map {
-  width: 100%;
-  height: 70vh;
+  height: 90vmin;
+  width: 90vmin;
   margin: auto;
   margin-bottom: 20px; }
 
 .header {
-  text-align: center; }
+  text-align: center;
+  background: white; }
 
 #events {
   margin-top: 20px;
@@ -29,13 +59,23 @@
   font-size: 1.5em;
   text-align: center;
   padding-top: 20px;
-  padding-bottom: 20px;
-  background-color: #B3E5FC; }
+  padding-bottom: 20px; }
 
+/*
 .event:last-child {
-  border-bottom-style: none; }
+    border-bottom-style: none;
+}
 
 .event:nth-child(even) {
-  background-color: #51c3f8; }
+    background-color: darken($eventColor, 20);
+}
+*/
+.navbar {
+  margin-bottom: 0px;
+  background-color: #fff5c3;
+  color: #9bd7d5; }
+
+#navbar {
+  color: #9bd7d5; }
 
 /*# sourceMappingURL=style.css.map */
