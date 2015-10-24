@@ -51,10 +51,22 @@ function plotRoute(locations) {
 		};
 		
 		waypointMarkers.push(
+			var infowindow = new google.maps.InfoWindow({
+    content: contentString
+  });
+
+  var marker = new google.maps.Marker({
+    position: uluru,
+    map: map,
+    title: 'Uluru (Ayers Rock)'
+  });
+  marker.addListener('click', function() {
+    infowindow.open(map, marker);
+  });
+			
 			new google.maps.Marker({
 				position:locations[i],
-				map:map,
-				title:"faces!" + i}));
+				map:map}));
 		
 	/*	var marker = new google.maps.Marker( {
 			title: "text"	
@@ -84,7 +96,7 @@ function calcRoute(start, stops, map, directionsService, directionsDisplay) {
 	directionsService.route(request, function(result, status) {
 		if (status == google.maps.DirectionsStatus.OK) {
 			skeletonRoute = result;
-			directionsDisplay.setOptions({suppressMarkers: true});
+			//directionsDisplay.setOptions({suppressMarkers: true});
 			directionsDisplay.setDirections(result);
 			skeletonMarker = new google.maps.Marker({
 				position: start,
