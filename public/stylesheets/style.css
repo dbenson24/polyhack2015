@@ -1,5 +1,10 @@
 body {
-  font-family: "Special Elite", cursive; }
+  font-family: "Special Elite", cursive;
+  background: #3d3c3c;
+  color: white; }
+
+#mapcontainer .container {
+  background-image: url("../public/images/Dream_background.gif"); }
 
 #start {
   font-family: "Special Elite", cursive;
@@ -47,7 +52,7 @@ body {
 
 .header {
   text-align: center;
-  background: white; }
+  background: #3d3c3c; }
 
 #events {
   margin-top: 20px;
@@ -72,10 +77,10 @@ body {
 */
 .navbar {
   margin-bottom: 0px;
-  background-color: #fff5c3;
-  color: #9bd7d5; }
+  background-color: #FFFFFF;
+  color: black; }
 
 #navbar {
-  color: #9bd7d5; }
+  color: #000000; }
 
 /*# sourceMappingURL=style.css.map */

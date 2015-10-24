@@ -11,6 +11,7 @@
 - Brian Rappaport
 - Quinn Collins
 - Nathan Watts
+- Anne Oursler
 
 ## TripAdvisor API Key
 - 4F5A3954F085445486E190A252ED8DB9

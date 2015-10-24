@@ -22,7 +22,7 @@ if(navigator.geolocation) {
  */
 
 (function() {
-  var fillEvents, myLat, myLng;
+  var fillEvents, myLat, myLng, r;
 
   myLat = 48.8582;
 
@@ -43,6 +43,7 @@ if(navigator.geolocation) {
       setTimeout(write, x * rate);
       _results.push(x++);
     }
+    move = true;
     return _results;
   };
 
@@ -55,17 +56,43 @@ if(navigator.geolocation) {
       loc = locations[id];
       content = "<li id=\"msg_" + id + "\" class=\"event\">\n</li>";
       events.html(events.html() + content);
-      _results.push(writeText(loc.sentence, "#msg_" + id, 150));
+      _results.push(writeText(loc.sentence, "#msg_" + id, 100));
     }
     return _results;
   };
 
-  $.getJSON("/api/locations/" + myLat + "/" + myLng, function(result) {
-    var data;
-    data = result.result.locations;
-    plotRoute(data);
-    return fillEvents(data.slice(0, 9));
-  });
+  if (window.location.hash === "#" || window.location.hash === "") {
+    $.getJSON("/api/locations/" + myLat + "/" + myLng, function(result) {
+      var data;
+      data = result.result.locations;
+      plotRoute(data);
+      return fillEvents(data.slice(0, 9));
+    });
+  } else {
+    r = $.getJSON("/api/saved/" + window.location.hash.substring(1), function(result) {
+      var data;
+      if (result.err != null) {
+        alert("That was an invalid Skeleton Story. Redirecting...");
+        return setTimeout(function() {
+          window.location.hash = "";
+          window.location.href = window.location.href;
+          return location.reload(true);
+        }, 2000);
+      } else {
+        data = result.result.locations;
+        plotRoute(data);
+        return fillEvents(data.slice(0, 9));
+      }
+    });
+    r.fail(function() {
+      alert("That was an invalid Skeleton Story. Redirecting...");
+      return setTimeout(function() {
+        window.location.hash = "";
+        window.location.href = window.location.href;
+        return location.reload(true);
+      }, 2000);
+    });
+  }
 
   writeText("Skeleton Activity", ".header h1", 250);
 

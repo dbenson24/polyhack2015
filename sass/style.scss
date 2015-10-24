@@ -5,11 +5,21 @@ $grey: #505050;
 $yellow: #fff5c3;
 $bluegreen: #9bd7d5;
 $red: #ff7260;
+$white: #FFFFFF;
+$black: #000000;
 $font: 'Special Elite', cursive;
 
 
 body {
     font-family: $font;
+    background: #3d3c3c;
+    color: white;
+}
+
+
+#mapcontainer .container {
+        background-image: url("../public/images/Dream_background.gif");
+    
 }
 
 #start {
@@ -68,7 +78,7 @@ body {
 
 .header {
     text-align: center;
-    background: white;
+    background: #3d3c3c;
 }
 
 #events {
@@ -98,10 +108,10 @@ body {
 
 .navbar {
     margin-bottom: 0px;
-    background-color: $yellow;
-    color: $bluegreen;
+    background-color: $white;
+    color: black;
 }
 
 #navbar {
-    color: $bluegreen;
+    color: $black;
 }

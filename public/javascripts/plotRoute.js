@@ -14,7 +14,7 @@ var images = [];
 
 var waypointMarkers = [];
 
-var infoWindows = [];
+var move = true;
 
 function getImages(){
 	for(var i = 0; i < 100; i++){
@@ -26,6 +26,7 @@ function getImages(){
 }
 
 function plotRoute(locations) {
+	
 	getImages();
 	for (var n = 0; n < locations.length; n++) {
 		locations[n].lat = parseFloat(locations[n].lat);
@@ -51,28 +52,18 @@ function plotRoute(locations) {
 			location: locations[i + 1],
 			stopover: true
 		};
-			infoWindows.push("waypoint "+i);
+		
+		console.log(locations[i].text);
+			
 		waypointMarkers.push(
-			new google.maps.Marker({
-				position:locations[i],
-				map:map}));
-			
-			var makeWindows = [waypoints.length];
-			makeWindows[i] = function(){
-				console.log(infoWindows[i]);
-			    new google.maps.InfoWindow({position: locations[i], content: infoWindows[i], map:map}).open(map, waypointMarkers[i]);
-			};
-			
-			console.log(makeWindows);
-				
-		 	google.maps.event.addListener(waypointMarkers[i], 'click', makeWindows[i]);
+			makeMarker(map, locations[i].lat, locations[i].lng, locations[i].title + ": " + locations[i].text));
 	}
 	
 
-	calcRoute(locations[0], waypoints, map, directionsService, directionsDisplay);
+	calcRoute(locations[0], waypoints, map, directionsService, directionsDisplay, locations);
 }
 
-function calcRoute(start, stops, map, directionsService, directionsDisplay) {
+function calcRoute(start, stops, map, directionsService, directionsDisplay, locations) {
 	var request = {
 		origin: start,
 		destination: start,
@@ -112,6 +103,8 @@ function calcRoute(start, stops, map, directionsService, directionsDisplay) {
 				if (step >= skeletonRoute.routes[route].legs[leg].steps.length) {
 					step = 0;
 					leg++;
+					move = false;
+					//window.writeText(locations.sentence, selector, rate, moveToNext);
 				}
 				if (leg >= skeletonRoute.routes[route].legs.length) {
 					leg = 0;
@@ -125,27 +118,37 @@ function calcRoute(start, stops, map, directionsService, directionsDisplay) {
 			}
 			
 			function animateSkelly() {
+				
 				frame++;
 				frame %= 100;
+				
 				if(iter >= 1){
-					prevLoc = skeletonRoute.routes[route].legs[leg].steps[step].path[latlng];
 					iter = 0;
-					nextAddress();
-					
-					if(dist<10)
+					if(move){
+						prevLoc = skeletonRoute.routes[route].legs[leg].steps[step].path[latlng];
 						nextAddress();
+					
+						//if(dist<10)
+							//nextAddress();
+					} else{
+						move = true;
+					}
 				}
 				
-				
-				iter +=1/dist;
+				if(move)
+					iter +=1/dist;
+				else
+					iter += 0.1;
 				//console.log(iter);
-				skeletonMarker.setPosition(google.maps.geometry.spherical.interpolate(prevLoc, nextLoc, iter));
+				if(move)
+					skeletonMarker.setPosition(google.maps.geometry.spherical.interpolate(prevLoc, nextLoc, iter));
 				skeletonMarker.setIcon(images[frame]);
 			}
 			window.setInterval(animateSkelly, 50);
 		}
 	});
 }
+
 
 //to get discrete points from route, use route[0].legs[0].steps[0].path[0];
 
@@ -184,3 +187,19 @@ function lerp(latlngA, latlngB, n) {
 	console.log(point.lng());
 	return point;
 }
+
+
+function makeMarker(map, lat, lng, title) {
+    var infowindow, marker;
+    marker = new google.maps.Marker({
+      position: new google.maps.LatLng(lat, lng),
+      title: title
+    });
+    marker.setMap(map);
+    infowindow = new google.maps.InfoWindow();
+    google.maps.event.addListener(marker, 'click', function() {
+      infowindow.setContent(marker.title);
+      return infowindow.open(map, marker);
+    });
+    return marker;
+  };

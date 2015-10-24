@@ -23,6 +23,8 @@ if(navigator.geolocation) {
 myLat = 48.8582;
 myLng = 2.2945;
 
+
+
 ##}
 
 
@@ -36,6 +38,7 @@ window.writeText = (text, selector, rate) ->
     while x < text.length
         setTimeout(write, x*rate)
         x++
+    move = true
 
 fillEvents = (locations) ->
     console.log("locations", locations)
@@ -45,13 +48,39 @@ fillEvents = (locations) ->
                      </li>
                   """
         events.html(events.html()+content)
-        writeText(loc.sentence, "#msg_#{id}", 150)
+        writeText(loc.sentence, "#msg_#{id}", 100)
 
-$.getJSON("/api/locations/" + myLat + "/" + myLng, (result) ->
-    data = result.result.locations
-    plotRoute(data)
-    fillEvents(data[0...9])
-)
+if (window.location.hash is "#" or window.location.hash is "") 
+    $.getJSON("/api/locations/" + myLat + "/" + myLng, (result) ->
+        data = result.result.locations
+        plotRoute(data)
+        fillEvents(data[0...9])
+    )
+        
+else 
+    r = $.getJSON("/api/saved/" + window.location.hash.substring(1), (result) ->
+        if result.err?
+            alert "That was an invalid Skeleton Story. Redirecting..."
+            setTimeout(() ->
+                window.location.hash = ""
+                window.location.href = window.location.href
+                location.reload(true)
+            , 2000)
+        else
+            data = result.result.locations
+            plotRoute(data)
+            fillEvents(data[0...9])
+    )
+    r.fail(() ->
+        alert "That was an invalid Skeleton Story. Redirecting..."
+        setTimeout(() ->
+            window.location.hash = ""
+            window.location.href = window.location.href
+            location.reload(true)
+        , 2000)
+    )
+
+
 
 
 writeText("Skeleton Activity", ".header h1", 250)

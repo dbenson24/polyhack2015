@@ -67,6 +67,7 @@ router.get('/locations', function(req, res, next) {
 
     //find places near location
     var placesAPI = website + 'map/' + lat + ',' + lon + '?key=' + API;
+    console.log(placesAPI);
     //Check for error
     request(placesAPI, function(error, response, body) {
         if (error) {
@@ -83,13 +84,39 @@ router.get('/locations', function(req, res, next) {
     });
 });
 
+router.get('/reviews', function(req, res, next) {
+    var API = '4F5A3954F085445486E190A252ED8DB9';
+    var website = 'https://api.tripadvisor.com/api/partner/2.0/';
+    var lat = 42.403604;
+    var lon = -71.113997;
+
+    //find places near location
+    var placesAPI = website + 'location/' + 89575 + '/reviews?key=' + API;
+    console.log(placesAPI);
+    //Check for error
+    request(placesAPI, function(error, response, body) {
+        if (error) {
+            res.send('Error:', error);
+        }
+        else if (response.statusCode !== 200) {
+            res.send('Invalid Status Code Returned:', response.statusCode);
+        }
+        else {
+            var text = JSON.parse(body);
+            res.send(text);
+        }
+
+    });
+});
+
+
 router.get('/saved/:id', function(req, res, next) {
     var collection = db.get('stories');
-    collection.find({"_id":req.params.id
-    }, function(err, docs) {
+    collection.findOne({"_id":req.params.id
+    }, function(err, result) {
         res.send(
             (err === null) ? {
-                docs
+                result
             } : {
                 msg: err
             }
