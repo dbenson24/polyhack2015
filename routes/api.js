@@ -2,6 +2,10 @@ var express = require('express');
 var request = require('request');
 var sentenceGen = require("./sentenceGen");
 
+var mongo = require('mongodb');
+var monk = require('monk');
+var db = monk("mongodb://polyhack:polyhack@ds043694.mongolab.com:43694/skeleton");
+
 var router = express.Router();
 
 
@@ -23,8 +27,9 @@ router.get('/locations/:lat/:lon', function(req, res, next) {
             res.send('Invalid Status Code Returned:', response.statusCode);
         }
         else {
-            var text = JSON.parse(body);            
+            var text = JSON.parse(body);
             var locations = [];
+            // elem.innerHTML += "<p>While you were asleep, your skeleton decided to take an adventure around $location.</p>"
             for (var i = 0; i < text.data.length; i++) {
                 var rand = Math.round(Math.random() * 20);
                 locations.push({});
@@ -34,17 +39,21 @@ router.get('/locations/:lat/:lon', function(req, res, next) {
                 locations[i].name = text.data[i].name;
                 locations[i].rating = text.data[i].rating;
                 locations[i].type = text.data[i].category.name;
-                locations[i].sentence = sentenceGen(locations[i]);
-                /*
-                if (rand >= text.data[i].reviews.length) {
-                    rand = text.data[i].reviews.length - 1;
-                }
-                locations[i].title = text.data[i].reviews[rand].title;
-                locations[i].text = text.data[i].reviews[rand].text;
-                locations[i].rating = text.data[i].reviews[rand].rating;
-                */
+                locations[i].sentence = sentenceGen(locations[i], i);
             }
-            res.send(locations);
+            //res.send(locations);
+            var collection = db.get('stories');
+            collection.insert({
+                "locations": locations
+            }, function(err, result) {
+                res.send(
+                    (err === null) ? {
+                        result
+                    } : {
+                        msg: err
+                    }
+                );
+            });
         }
 
     });

@@ -12,6 +12,8 @@ var skeletonRoute = null;
 
 var images = [];
 
+var waypointMarkers = [];
+
 function getImages(){
 	for(var i = 0; i < 100; i++){
 		if(i<10)
@@ -23,7 +25,6 @@ function getImages(){
 
 function plotRoute(locations) {
 	getImages();
-	
 	for (var n = 0; n < locations.length; n++) {
 		locations[n].lat = parseFloat(locations[n].lat);
 		locations[n].lng = parseFloat(locations[n].lng);
@@ -48,6 +49,22 @@ function plotRoute(locations) {
 			location: locations[i + 1],
 			stopover: true
 		};
+		
+		waypointMarkers.push(
+			new google.maps.Marker({
+				position:locations[i],
+				map:map,
+				title:"faces!" + i}));
+		
+	/*	var marker = new google.maps.Marker( {
+			title: "text"	
+			lat: waypoints[i].latitude,
+			lng: waypoints[i].longitude
+		});
+		google.maps.event.addListener(waypoints[i], 'click', function() {
+			infowindow.setContent("this.title");
+			infowindow.open(map, this);
+		});*/
 	}
 	
 
@@ -60,13 +77,14 @@ function calcRoute(start, stops, map, directionsService, directionsDisplay) {
 		destination: start,
 		travelMode: google.maps.TravelMode.WALKING,
 		waypoints: stops,
-		optimizeWaypoints: true
+		optimizeWaypoints: true,
 	};
 
 
 	directionsService.route(request, function(result, status) {
 		if (status == google.maps.DirectionsStatus.OK) {
 			skeletonRoute = result;
+			directionsDisplay.setOptions({suppressMarkers: true});
 			directionsDisplay.setDirections(result);
 			skeletonMarker = new google.maps.Marker({
 				position: start,
@@ -147,8 +165,8 @@ function plopMarkers() {
 					//google.maps.event.addListener(marker, 'click', function() {
 					//infowindow.setContent(marker.title);
 					//infowindow.open(map, marker);
-				});
-					//skeletonMarker({position:skeletonRoute.routes[route].legs[leg].steps[step].path[latlng]});
+			//	});
+					skeletonMarker({position:skeletonRoute.routes[route].legs[leg].steps[step].path[latlng]});
 				}
 			}
 		}

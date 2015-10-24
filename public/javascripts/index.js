@@ -47,21 +47,22 @@ if(navigator.geolocation) {
   };
 
   fillEvents = function(locations) {
-    var content, events, id, loc, sentence, _i, _len, _results;
+    var content, events, id, loc, _i, _len, _results;
     console.log("locations", locations);
     events = $("#events");
     _results = [];
     for (id = _i = 0, _len = locations.length; _i < _len; id = ++_i) {
       loc = locations[id];
       content = "<li id=\"msg_" + id + "\" class=\"event\">\n</li>";
-      sentence = "Skeleton waltzed right into " + loc.name + " and left his bones on the floor.";
       events.html(events.html() + content);
-      _results.push(writeText(sentence, "#msg_" + id, 150));
+      _results.push(writeText(loc.sentence, "#msg_" + id, 150));
     }
     return _results;
   };
 
-  $.getJSON("/api/locations/" + myLat + "/" + myLng, function(data) {
+  $.getJSON("/api/locations/" + myLat + "/" + myLng, function(result) {
+    var data;
+    data = result.result.locations;
     plotRoute(data);
     return fillEvents(data.slice(0, 9));
   });

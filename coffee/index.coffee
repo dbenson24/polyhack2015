@@ -18,8 +18,8 @@ if(navigator.geolocation) {
 						myLng = position.coords.longitude;
     }
 } else {
-###
 
+###
 myLat = 48.8582;
 myLng = 2.2945;
 
@@ -44,11 +44,11 @@ fillEvents = (locations) ->
         content = """<li id="msg_#{id}" class="event">
                      </li>
                   """
-        sentence = "Skeleton waltzed right into #{loc.name} and left his bones on the floor."
         events.html(events.html()+content)
-        writeText(sentence, "#msg_#{id}", 150)
+        writeText(loc.sentence, "#msg_#{id}", 150)
 
-$.getJSON("/api/locations/" + myLat + "/" + myLng, (data) ->
+$.getJSON("/api/locations/" + myLat + "/" + myLng, (result) ->
+    data = result.result.locations
     plotRoute(data)
     fillEvents(data[0...9])
 )
