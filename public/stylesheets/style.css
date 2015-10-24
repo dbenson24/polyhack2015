@@ -86,11 +86,17 @@ body {
 #navbar {
   color: #000000; }
 
-#lat, #lng {
-  margin-left: 15px;
-  margin-right: 15px; }
-
 form {
   margin: auto; }
+
+.btn-default {
+  margin-top: 15px;
+  background-color: #9bd7d5; }
+
+.input-group {
+  margin: auto; }
+
+.center {
+  text-align: center; }
 
 /*# sourceMappingURL=style.css.map */

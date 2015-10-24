@@ -1,0 +1,10 @@
+audio_loopable_rs.mp3
+
+-start playing audio file from beginning, when it reaches the end (1:17.2415 sec)
+	sample: 003,406,344
+	-go to sample: 000,487,015 (0:11 sec) and then loop from there to the end
+		-the music will loop seamlessly (in theory)
+
+audio_long_rs.mp3
+
+-same audio, just looped manually in case don't have time to write audio looper

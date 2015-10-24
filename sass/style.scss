@@ -117,11 +117,19 @@ body {
     color: $black;
 }
 
-#lat, #lng {
-    margin-left: 15px;
-    margin-right: 15px;
-}
-
 form {
     margin: auto;
+}
+
+.btn-default {
+    margin-top: 15px;
+    background-color: $bluegreen;
+}
+
+.input-group {
+    margin: auto;
+}
+
+.center {
+    text-align: center;
 }

@@ -1,33 +1,5 @@
-###
-yourLocation = new google.maps.LatLng(42.4019, -71.1193)
-myOptions =
-    zoom: 13,
-    center: yourLocation,
-    mapTypeId: google.maps.MapTypeId.ROADMAP
-map = new google.maps.Map(document.getElementById("map"), myOptions)
-###
-## Let's hold off on the current location - Derek
-## I think we should implement it so that the user picks a location for the
-## skeleton to start moving from
-###
-var myLat;
-var myLng;
-if(navigator.geolocation) {
-    navigator.geolocation.getCurrentPosition(function(position) {
-						myLat = position.coords.latitude;
-						myLng = position.coords.longitude;
-    }
-} else {
-
-###
-
-#myLat = 48.8582;
-#myLng = 2.2945;
-#myLat = 40.7
-#myLng = 23.324
 myLat = 42.4039256 #Tufts
 myLng = -71.1168384 #Tufts
-##}
 
 window.changeLocation = () ->
     myLat = $("#lat").val()
@@ -46,25 +18,19 @@ window.changeLocation = () ->
         $("#link").html("https://polyhack2015-dbenson24.c9.io/##{result.result._id}")
     )
 
-##just wanted to mention that we're having a lot of trouble understanding your code
-## basically, we've only been able to work with plotRoute and sentenceGen. And style.css, a bit. Everything else either doesn't save, isn't used at all, or we just don't understand
-## So twice now we've spent hours working on code that isn't actually used anymore.
-## If there's obsolete code files, could you delete those? At some point, anyway.
-## Making it actually work is higher-priority
-## Okay so what doesn't work
-## refresh the page and tell me
-
 ###
-Assertion failed: InvalidValueError: in property origin: not a string; and not a LatLng or LatLngLiteral: not an Object; and not an Object
-in main.js:16
-and
+Oh, if you could get the reviews working, that would be awesome
 
-Uncaught TypeError: Cannot read property 'N' of null
-VM3308:7
+Also, thanks. We've been getting pretty frusturated.
+
+What about the reviews tho
+I don't really get where they are displayed
+or what they do
 
 
-I know I see that
-but what about the page isn't working
+Can you guys write out a nice Readme?
+
+
 ###
 
 

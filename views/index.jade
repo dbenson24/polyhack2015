@@ -28,23 +28,21 @@ block content
         span.bigger.bluegreen z
         span z
         span.smaller.teal z
+  
+  
+  .container
+    .col-md-12
+      div.input-group
+        input#lat.form-control(type="text" placeholder="Latitude")
+        input#lng.form-control(type="text" placeholder="Longitude")
+        input.btn.btn-default.form-control(type="button" value="Change Location" onclick="changeLocation();")
+    .col-md-12.center
+      h3 Share this link with your friends!: 
+        span#link.yellow
   .container
     .header
       h1  
     ul#events
-  
-  
-  .container
-    .col-md-12
-      form(name="input" action="")
-        span.bigger Latitude
-        input#lat(type="text")
-        span.bigger Longitude
-        input#lng(type="text")
-        input.btn.btn-default(type="button" value="Change Location" onclick="changeLocation();")
-    .col-md-12
-      h3 Share this link with your friends!: 
-        span#link.yellow
   div#mapcontainer
     #map
     
